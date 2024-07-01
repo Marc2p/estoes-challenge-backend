@@ -11,8 +11,22 @@ export const createProject = async (req, res) => {
 
 export const getProjects = async (req, res) => {
   try {
-    const projects = await projectService.getAllProjects();
-    res.status(200).json(projects);
+    const page = parseInt(req.query.page, 10) || 1;
+    const pageSize = parseInt(req.query.pageSize, 10) || 10;
+    const buildPageUrl = (pageNum) => `/api/projects?page=${pageNum}&pageSize=${pageSize}`;
+
+    const projects = await projectService.getAllProjects(page, pageSize);
+    const response = {
+      totalItems: projects.totalItems,
+      totalPages: projects.totalPages,
+      currentPage: projects.currentPage,
+      pageSize: projects.pageSize,
+      nextPage: projects.nextPage ? buildPageUrl(projects.nextPage) : null,
+      prevPage: projects.prevPage ? buildPageUrl(projects.prevPage) : null,
+      projects: projects.projects
+    };
+
+    res.status(200).json(response);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

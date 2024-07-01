@@ -10,10 +10,24 @@ class ProjectService {
     }
   }
 
-  async getAllProjects() {
+  async getAllProjects(page = 1, pageSize = 10) {
     try {
-      const projects = await Project.findAll();
-      return projects;
+      const offset = (page - 1) * pageSize;
+      const { count, rows } = await Project.findAndCountAll({
+        limit: pageSize,
+        offset
+      });
+
+      const totalPages = Math.ceil(count / pageSize);
+
+      return {
+        totalItems: count,
+        totalPages,
+        currentPage: page,
+        nextPage: page < totalPages ? page + 1 : null,
+        prevPage: page > 1 ? page - 1 : null,
+        projects: rows,
+      };
     } catch (error) {
       throw new Error(error.message);
     }
