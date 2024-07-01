@@ -16,16 +16,9 @@ class ProjectService {
       const offset = (page - 1) * pageSize;
       const whereClause = searchQuery
       ? {
-          [Op.or]: {
-            ProjectName: { [Op.like]: `%${searchQuery}%` },
-            ProjectDescription: { [Op.like]: `%${searchQuery}%` },
-            ProjectManager: { [Op.like]: `%${searchQuery}%` },
-            AssignedTo: { [Op.like]: `%${searchQuery}%` },
-            Status: { [Op.like]: `%${searchQuery}%` }
-          }
+        ProjectName: { [Op.like]: `%${searchQuery}%` }
         }
       : {};
-
       const { count, rows } = await Project.findAndCountAll({
         where: whereClause,
         limit: pageSize,

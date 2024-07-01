@@ -25,8 +25,8 @@ export const validateProject = [
     .notEmpty()
     .withMessage('ProjectManager no puede estar vacío.'),
   body('AssignedTo')
-    .isArray()
-    .withMessage('AssignedTo debe ser un array.')
+    .isString()
+    .withMessage('AssignedTo debe ser un string.')
     .notEmpty()
     .withMessage('AssignedTo no puede estar vacío.'),
   body('Status')
