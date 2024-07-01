@@ -51,7 +51,7 @@ class ProjectService {
     try {
       const project = await Project.findByPk(id);
       if (!project) {
-        throw new Error('Project not found');
+        throw new Error('Proyecto no encontrado');
       }
       return project;
     } catch (error) {
@@ -74,7 +74,7 @@ class ProjectService {
         where: { ProjectId: id },
       });
       if (!updated) {
-        throw new Error('Project not found');
+        throw new Error('Proyecto no encontrado');
       }
       const updatedProject = await Project.findByPk(id);
       return updatedProject;
@@ -89,7 +89,7 @@ class ProjectService {
         where: { ProjectId: id },
       });
       if (!deleted) {
-        throw new Error('Project not found');
+        throw new Error('Proyecto no encontrado');
       }
     } catch (error) {
       throw new Error(error.message);
