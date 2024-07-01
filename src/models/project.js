@@ -20,7 +20,7 @@ const Project = sequelize.define('Project', {
     allowNull: false,
   },
   AssignedTo: {
-    type: DataTypes.ARRAY(DataTypes.STRING),
+    type: DataTypes.STRING,
     allowNull: false,
   },
   Status: {

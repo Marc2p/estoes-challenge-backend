@@ -36,11 +36,8 @@ const swaggerDefinition = {
             description: 'Persona encargada del proyecto'
           },
           AssignedTo: {
-            type: 'array',
-            description: 'Usuarios asignados al proyecto',
-            items: {
-              type: 'string'
-            }
+            type: 'string',
+            description: 'Usuarios asignados al proyecto'
           },
           Status: {
             type: 'string',
