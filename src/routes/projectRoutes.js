@@ -38,7 +38,7 @@ const router = express.Router();
  *         name: search
  *         schema:
  *           type: string
- *         description: Busca proyectos que coincidan con el término de búsqueda en cualquiera de sus campos
+ *         description: Busca proyectos que coincidan con el término de búsqueda en su nombre
  *     responses:
  *       200:
  *         description: Lista de proyectos
