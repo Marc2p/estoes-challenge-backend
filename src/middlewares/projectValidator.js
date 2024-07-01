@@ -4,7 +4,7 @@ import projectService from '../services/projectService.js';
 export const validateProject = [
   body('ProjectName')
     .isString()
-    .withMessage('ProjectName debe ser una cadena.')
+    .withMessage('ProjectName debe ser un string.')
     .isLength({ min: 1, max: 100 })
     .withMessage('ProjectName debe tener entre 1 y 100 caracteres.')
     .custom(async (value) => {
@@ -16,17 +16,17 @@ export const validateProject = [
     }),
   body('ProjectDescription')
     .isString()
-    .withMessage('ProjectDescription debe ser una cadena.')
+    .withMessage('ProjectDescription debe ser un string.')
     .isLength({ min: 1, max: 500 })
     .withMessage('ProjectDescription debe tener entre 1 y 500 caracteres.'),
   body('ProjectManager')
     .isString()
-    .withMessage('ProjectManager debe ser una cadena.')
+    .withMessage('ProjectManager debe ser un string.')
     .notEmpty()
     .withMessage('ProjectManager no puede estar vacío.'),
   body('AssignedTo')
-    .isString()
-    .withMessage('AssignedTo debe ser una cadena.')
+    .isArray()
+    .withMessage('AssignedTo debe ser un array.')
     .notEmpty()
     .withMessage('AssignedTo no puede estar vacío.'),
   body('Status')
