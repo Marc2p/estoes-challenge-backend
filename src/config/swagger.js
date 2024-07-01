@@ -9,7 +9,7 @@ const swaggerDefinition = {
   },
   servers: [
     {
-      url: 'http://localhost:3000/api',
+      url: 'http://backend.peirone.ar/api',
       description: 'Servidor de desarrollo'
     }
   ],

@@ -1,4 +1,7 @@
 # Backend challenge
+## demo
+El proyecto se puede ver en ejecución en [http://backend.peirone.ar](http://peirone.ar)
+## Especificaciones recibidas
 * Se debe crear un servicio que maneje los datos de la plataforma de gestión de proyectos.
 * Si bien no hay restricción de tiempo, creemos que de 3 a 5 horas es un tiempo razonable para entregarlo con calidad.
 
@@ -28,7 +31,7 @@ El objetivo es realizar la construcción de endpoint clase Projects que represen
 ## Definiciones técnicas
 * El servicio debe estar realizado en Laravel, Node Express o el framework de JS que te sea más comodo utilizar.
 * La aplicación debe estar publicada y debe ser accesible mediante un link(Ver Netfly, Heroku) o cualquier webserver.
-* El código de la aplicación debe estar subida a un repositorio de úblico acceso.
+* El código de la aplicación debe estar subida a un repositorio de público acceso.
 
 ## Consideraciones
 * Es importante que existan las validaciones de datos, ejemplo si se solicita un proyecto que no existe.
