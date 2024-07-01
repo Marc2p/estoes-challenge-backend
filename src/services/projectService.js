@@ -1,4 +1,5 @@
 import Project from '../models/project.js';
+import { Op } from 'sequelize';
 
 class ProjectService {
   async createProject(projectData) {
@@ -10,10 +11,23 @@ class ProjectService {
     }
   }
 
-  async getAllProjects(page = 1, pageSize = 10) {
+  async getAllProjects(page = 1, pageSize = 10, searchQuery = null) {
     try {
       const offset = (page - 1) * pageSize;
+      const whereClause = searchQuery
+      ? {
+          [Op.or]: {
+            ProjectName: { [Op.like]: `%${searchQuery}%` },
+            ProjectDescription: { [Op.like]: `%${searchQuery}%` },
+            ProjectManager: { [Op.like]: `%${searchQuery}%` },
+            AssignedTo: { [Op.like]: `%${searchQuery}%` },
+            Status: { [Op.like]: `%${searchQuery}%` }
+          }
+        }
+      : {};
+
       const { count, rows } = await Project.findAndCountAll({
+        where: whereClause,
         limit: pageSize,
         offset
       });
@@ -40,6 +54,15 @@ class ProjectService {
         throw new Error('Project not found');
       }
       return project;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+
+  async projectExists(ProjectName) {
+    try {
+      const project = await Project.findOne({ where: { ProjectName } });
+      return !!project;
     } catch (error) {
       throw new Error(error.message);
     }

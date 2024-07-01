@@ -13,9 +13,10 @@ export const getProjects = async (req, res) => {
   try {
     const page = parseInt(req.query.page, 10) || 1;
     const pageSize = parseInt(req.query.pageSize, 10) || 10;
-    const buildPageUrl = (pageNum) => `/api/projects?page=${pageNum}&pageSize=${pageSize}`;
+    const searchQuery = req.query.search || null;
+    const buildPageUrl = (pageNum) => `/api/projects?page=${pageNum}&pageSize=${pageSize}&search=${searchQuery}`;
 
-    const projects = await projectService.getAllProjects(page, pageSize);
+    const projects = await projectService.getAllProjects(page, pageSize, searchQuery);
     const response = {
       totalItems: projects.totalItems,
       totalPages: projects.totalPages,
@@ -34,7 +35,7 @@ export const getProjects = async (req, res) => {
 
 export const getProjectById = async (req, res) => {
   try {
-    const project = await projectService.getProjectById(req.params.id);
+    const project = await projectService.getProjectById(Number(req.params.id));
     res.status(200).json(project);
   } catch (error) {
     res.status(error.message === 'Project not found' ? 404 : 500).json({ error: error.message });
